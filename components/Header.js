@@ -1,12 +1,12 @@
-import Link from 'next/link'
+import Link from 'next/link';
 
 export default ({ pathname }) => (
   <header>
-    <Link prefetch href='/'>
+    <Link prefetch href="/">
       <a className={pathname === '/' && 'is-active'}>Home</a>
     </Link>
 
-    <Link prefetch href='/about'>
+    <Link prefetch href="/about">
       <a className={pathname === '/about' && 'is-active'}>About</a>
     </Link>
 
@@ -24,4 +24,4 @@ export default ({ pathname }) => (
       }
     `}</style>
   </header>
-)
+);

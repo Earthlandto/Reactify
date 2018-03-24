@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 class VariantSelector extends Component {
   render() {
@@ -9,10 +9,13 @@ class VariantSelector extends Component {
         key={this.props.option.name}
         onChange={this.props.handleOptionChange}
       >
-        {this.props.option.values.map((value) => {
+        {this.props.option.values.map(value => {
           return (
-            <option value={value} key={`${this.props.option.name}-${value}`}>{`${value}`}</option>
-          )
+            <option
+              value={value}
+              key={`${this.props.option.name}-${value}`}
+            >{`${value}`}</option>
+          );
         })}
       </select>
     );

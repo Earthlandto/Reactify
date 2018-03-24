@@ -8,51 +8,59 @@ Main App component
 */
 import React, { Component } from 'react';
 
-import { gql, graphql, compose } from 'react-apollo'
-import Layout from './Layout'
-import withShop from '../containers/queries/withShop'
-import withCheckoutId from '../containers/redux/withCheckoutId'
-import withCheckoutCreate from '../containers/mutations/withCheckoutCreate'
-import branch from 'recompose/branch'
-import { setCheckoutId } from '../lib/actions'
+import { gql, graphql, compose } from 'react-apollo';
+import Layout from './Layout';
+import withShop from '../containers/queries/withShop';
+import withCheckoutId from '../containers/redux/withCheckoutId';
+import withCheckoutCreate from '../containers/mutations/withCheckoutCreate';
+import branch from 'recompose/branch';
+import { setCheckoutId } from '../lib/actions';
 
 class App extends Component {
-
   constructor() {
-    super()
+    super();
   }
 
   componentWillMount() {
-    console.log('// App componentWillMount')
-    this.props.checkoutCreate({
-      variables: { 
-        input: {
-          allowPartialAddresses: true,
-          shippingAddress: {city: 'Toronto', province: 'ON', country: 'Canada'}
-        }
-      }
-    }).then((res) => {
-      console.log('// checkoutCreate mutation completed')
-      // console.log(res.data.checkoutCreate)
-      // store checkout ID in Redux (useful to retrieve checkout contents)
-      const checkoutId = res.data.checkoutCreate.checkout.id
-      this.props.dispatch(setCheckoutId(checkoutId))
-    })
+    console.log('// App componentWillMount');
+    this.props
+      .checkoutCreate({
+        variables: {
+          input: {
+            allowPartialAddresses: true,
+            shippingAddress: {
+              city: 'Toronto',
+              province: 'ON',
+              country: 'Canada',
+            },
+          },
+        },
+      })
+      .then(res => {
+        console.log('// checkoutCreate mutation completed');
+        // console.log(res.data.checkoutCreate)
+        // store checkout ID in Redux (useful to retrieve checkout contents)
+        const checkoutId = res.data.checkoutCreate.checkout.id;
+        this.props.dispatch(setCheckoutId(checkoutId));
+      });
   }
 
   render() {
-
-    const { loading, shop, children } = this.props
+    const { loading, shop, children } = this.props;
 
     return (
       <main>
-        <Layout shop={shop} loading={loading}>{children}</Layout>
+        <Layout shop={shop} loading={loading}>
+          {children}
+        </Layout>
         <style jsx global>{`
           /* INITIALIZERS + DEFAULTS
            * ============================== */
           @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
 
-          *, *:before, *:after {
+          *,
+          *:before,
+          *:after {
             box-sizing: border-box;
           }
 
@@ -95,7 +103,7 @@ class App extends Component {
             padding: 10px 10px;
           }
 
-          .App__nav{
+          .App__nav {
             width: 100%;
             list-style: none;
           }
@@ -173,9 +181,9 @@ class App extends Component {
           }
 
           .Flash__message {
-            background: rgba(0,0,0,0.88);
+            background: rgba(0, 0, 0, 0.88);
             border-radius: 3px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             color: #ffffff;
             cursor: default;
             display: -webkit-flex;
@@ -318,7 +326,7 @@ class App extends Component {
           }
 
           .Line-item__title {
-            color: #4E5665;
+            color: #4e5665;
             font-size: 15px;
             font-weight: 400;
           }
@@ -395,12 +403,12 @@ class App extends Component {
           /* PRODUCTS
            * ============================== */
 
-           .product-list{
+          .product-list {
             max-width: 900px;
             margin: 20px auto;
             display: flex;
             flex-wrap: wrap;
-           }
+          }
 
           .Product {
             flex: 0 1 31%;
@@ -515,19 +523,15 @@ class App extends Component {
             background: #fbefee;
             color: #c23628;
           }
-          .Product img{
+          .Product img {
             max-width: 200px;
           }
         `}</style>
       </main>
-    )
+    );
   }
 }
 
-export default compose(
-  withShop,
-  withCheckoutId,
-  withCheckoutCreate
-)(App)
+export default compose(withShop, withCheckoutId, withCheckoutCreate)(App);
 
 // export default withShop(App)

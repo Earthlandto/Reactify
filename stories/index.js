@@ -14,7 +14,7 @@ import VariantSelector from '../components/VariantSelector.js';
 
 import './storybook.css';
 
-import {emptyCheckout, fullCheckout} from './data/checkout.js';
+import { emptyCheckout, fullCheckout } from './data/checkout.js';
 import sampleProduct from './data/product.js';
 import sampleLineItem from './data/lineItem.js';
 import sampleOption from './data/option.js';
@@ -26,11 +26,14 @@ import sampleOption from './data/option.js';
 // storiesOf('CustomerAuth', module)
 //   .add('default', () => <CustomerAuth/>)
 
-storiesOf('LineItem', module)
-  .add('default', () => <LineItem line_item={sampleLineItem} />)
+storiesOf('LineItem', module).add('default', () => (
+  <LineItem line_item={sampleLineItem} />
+));
 
-storiesOf('Product', module)
-  .add('default', () => <Product product={sampleProduct} />)
+storiesOf('Product', module).add('default', () => (
+  <Product product={sampleProduct} />
+));
 
-storiesOf('VariantSelector', module)
-  .add('default', () => <VariantSelector option={sampleOption} />)
+storiesOf('VariantSelector', module).add('default', () => (
+  <VariantSelector option={sampleOption} />
+));

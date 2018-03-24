@@ -1,11 +1,11 @@
-import { gql, graphql } from 'react-apollo'
+import { gql, graphql } from 'react-apollo';
 
-const POSTS_PER_PAGE = 10
+const POSTS_PER_PAGE = 10;
 
 const productList = gql`
   query productListQuery {
     shop {
-      products(first:20) {
+      products(first: 20) {
         pageInfo {
           hasNextPage
           hasPreviousPage
@@ -55,7 +55,7 @@ const productList = gql`
       }
     }
   }
-`
+`;
 
 export default graphql(productList, {
   // options: {
@@ -68,10 +68,9 @@ export default graphql(productList, {
   alias: 'withProductList',
 
   props: ({ data }) => {
-
     return {
       products: data.shop && data.shop.products && data.shop.products.edges,
-      loading: data.loading
+      loading: data.loading,
     };
 
     // loadMorePosts: () => {
@@ -90,5 +89,5 @@ export default graphql(productList, {
     //     }
     //   })
     // }
-  }
-})
+  },
+});

@@ -1,13 +1,16 @@
-import React, {Component} from 'react'
-import withIsCartOpen from '../containers/redux/withIsCartOpen'
-import { toggleCart } from '../lib/actions'
+import React, { Component } from 'react';
+import withIsCartOpen from '../containers/redux/withIsCartOpen';
+import { toggleCart } from '../lib/actions';
 
-const ToggleCart = ({ dispatch }) => 
-  <button onClick={e => {
-    e.preventDefault()
-    dispatch(toggleCart())
-  }}>
+const ToggleCart = ({ dispatch }) => (
+  <button
+    onClick={e => {
+      e.preventDefault();
+      dispatch(toggleCart());
+    }}
+  >
     Toggle Cart
   </button>
+);
 
-export default withIsCartOpen(ToggleCart)
+export default withIsCartOpen(ToggleCart);

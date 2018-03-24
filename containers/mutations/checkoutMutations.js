@@ -2,9 +2,9 @@
 
 Define HoCs to add, update, remove line items, and associate checkout with customer
 */
-import React from 'react'
-import { graphql, gql, compose, withApollo } from 'react-apollo'
-import CheckoutFragment from '../../fragments/checkoutFragment'
+import React from 'react';
+import { graphql, gql, compose, withApollo } from 'react-apollo';
+import CheckoutFragment from '../../fragments/checkoutFragment';
 
 /*
 
@@ -26,7 +26,10 @@ export const checkoutLineItemsAdd = gql`
   ${CheckoutFragment}
 `;
 
-export const withCheckoutLineItemsAdd = graphql(checkoutLineItemsAdd, {name: 'checkoutLineItemsAdd', alias: 'withCheckoutLineItemsAdd'})
+export const withCheckoutLineItemsAdd = graphql(checkoutLineItemsAdd, {
+  name: 'checkoutLineItemsAdd',
+  alias: 'withCheckoutLineItemsAdd',
+});
 
 /*
 
@@ -48,7 +51,10 @@ export const checkoutLineItemsUpdate = gql`
   ${CheckoutFragment}
 `;
 
-export const withCheckoutLineItemsUpdate = graphql(checkoutLineItemsUpdate, {name: 'checkoutLineItemsUpdate', alias: 'withCheckoutLineItemsUpdate'})
+export const withCheckoutLineItemsUpdate = graphql(checkoutLineItemsUpdate, {
+  name: 'checkoutLineItemsUpdate',
+  alias: 'withCheckoutLineItemsUpdate',
+});
 
 /*
 
@@ -70,7 +76,10 @@ export const checkoutLineItemsRemove = gql`
   ${CheckoutFragment}
 `;
 
-export const withCheckoutLineItemsRemove = graphql(checkoutLineItemsRemove, {name: 'checkoutLineItemsRemove', alias: 'withCheckoutLineItemsRemove'})
+export const withCheckoutLineItemsRemove = graphql(checkoutLineItemsRemove, {
+  name: 'checkoutLineItemsRemove',
+  alias: 'withCheckoutLineItemsRemove',
+});
 
 /*
 
@@ -92,4 +101,7 @@ export const checkoutCustomerAssociate = gql`
   ${CheckoutFragment}
 `;
 
-export const withCheckoutCustomerAssociate = graphql(checkoutCustomerAssociate, {name: 'checkoutCustomerAssociate', alias: 'withCheckoutCustomerAssociate'})
+export const withCheckoutCustomerAssociate = graphql(
+  checkoutCustomerAssociate,
+  { name: 'checkoutCustomerAssociate', alias: 'withCheckoutCustomerAssociate' }
+);

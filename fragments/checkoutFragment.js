@@ -1,4 +1,4 @@
-import { gql } from 'react-apollo'
+import { gql } from 'react-apollo';
 
 const CheckoutFragment = gql`
   fragment CheckoutFragment on Checkout {
@@ -7,7 +7,7 @@ const CheckoutFragment = gql`
     totalTax
     subtotalPrice
     totalPrice
-    lineItems (first: 250) {
+    lineItems(first: 250) {
       edges {
         node {
           id
@@ -27,4 +27,4 @@ const CheckoutFragment = gql`
   }
 `;
 
-export default CheckoutFragment
+export default CheckoutFragment;
