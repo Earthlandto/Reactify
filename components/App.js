@@ -296,7 +296,8 @@ class App extends Component {
 
           .Line-item__img {
             width: 65px;
-            height: 65px;
+            // height: 65px;
+            height: auto;
             border-radius: 3px;
             background-size: contain;
             background-repeat: no-repeat;

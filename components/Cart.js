@@ -9,11 +9,15 @@ import { compose } from 'react-apollo';
 import branch from 'recompose/branch';
 import { openCart, closeCart } from '../lib/actions';
 
+import { withCheckoutLineItemsUpdate } from '../containers/mutations/checkoutMutations';
+
 class Cart extends Component {
   constructor(props) {
     super(props);
     this.openCheckout = this.openCheckout.bind(this);
     this.handleCartClose = this.handleCartClose.bind(this);
+    this.updateLineItemInCart = this.updateLineItemInCart.bind(this);
+    this.removeLineItemInCart = this.removeLineItemInCart.bind(this);
   }
 
   openCheckout() {
@@ -24,6 +28,34 @@ class Cart extends Component {
     this.props.dispatch(closeCart());
   }
 
+  removeLineItemInCart(lineItem, newQuantity) {
+    console.log('remove line_item');
+    console.log(lineItem);
+    console.log(newQuantity);
+  }
+
+  updateLineItemInCart(lineItemId, newQuantity) {
+    console.log('update line_item');
+
+    const variantId = this.props.checkout.lineItems.edges.find(
+      edge => edge.node.id === lineItemId
+    ).node.id;
+
+    console.log(variantId);
+
+    this.props.checkoutLineItemsUpdate({
+      variables: {
+        checkoutId: this.props.checkoutId,
+        lineItems: [
+          {
+            variantId,
+            quantity: parseInt(newQuantity, 10),
+          },
+        ],
+      },
+    });
+  }
+
   render() {
     if (!this.props.checkout) {
       return <p>Loading…</p>;
@@ -32,8 +64,8 @@ class Cart extends Component {
     let line_items = this.props.checkout.lineItems.edges.map(line_item => {
       return (
         <LineItem
-          removeLineItemInCart={this.props.removeLineItemInCart}
-          updateLineItemInCart={this.props.updateLineItemInCart}
+          removeLineItemInCart={this.removeLineItemInCart}
+          updateLineItemInCart={this.updateLineItemInCart}
           key={line_item.node.id.toString()}
           line_item={line_item.node}
         />
@@ -88,6 +120,7 @@ Cart.defaultProps = {
 export default compose(
   withIsCartOpen,
   withCheckoutId,
+  withCheckoutLineItemsUpdate,
   branch(
     // only wrap with withCheckout if checkoutId is available
     props => !!props.checkoutId,

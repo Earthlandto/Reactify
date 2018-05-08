@@ -101,7 +101,9 @@ export class Product extends Component {
             alt={`${this.props.product.title} product shot`}
           />
         ) : null}
-        <h5 className="Product__title">{this.props.product.title}</h5>
+        <a href={this.props.product.onlieStoreUrl} className="Product__title">
+          {this.props.product.title}
+        </a>
         <span className="Product__price">${variant.price}</span>
         {variant_selectors}
         <label className="Product__option">

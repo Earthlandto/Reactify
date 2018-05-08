@@ -26,18 +26,23 @@ class LineItem extends Component {
     return (
       <li className="Line-item">
         <div className="Line-item__img">
-          {this.props.line_item.variant.image ? (
+          {this.props.line_item.variant.product.images ? (
             <img
-              src={this.props.line_item.variant.image.src}
+              src={
+                this.props.line_item.variant.product.images.edges[0].node.src
+              }
               alt={`${this.props.line_item.title} product shot`}
             />
           ) : null}
         </div>
         <div className="Line-item__content">
           <div className="Line-item__content-row">
-            <div className="Line-item__variant-title">
+            <a
+              className="Line-item__variant-title"
+              href={this.props.line_item.variant.onlineStoreUrl}
+            >
               {this.props.line_item.variant.title}
-            </div>
+            </a>
             <span className="Line-item__title">
               {this.props.line_item.title}
             </span>
