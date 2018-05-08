@@ -12,15 +12,28 @@ const CheckoutFragment = gql`
         node {
           id
           title
+          quantity
           variant {
             id
             title
+            price
+            compareAtPrice
             image {
               src
             }
-            price
+            product {
+              id
+              title
+              onlineStoreUrl
+              images(first: 250) {
+                edges {
+                  node {
+                    src
+                  }
+                }
+              }
+            }
           }
-          quantity
         }
       }
     }

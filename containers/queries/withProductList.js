@@ -5,29 +5,34 @@ const POSTS_PER_PAGE = 10;
 const productList = gql`
   query productListQuery {
     shop {
-      products(first: 20) {
-        pageInfo {
-          hasNextPage
-          hasPreviousPage
-        }
+      products(first: 100) {
+        # pageInfo {
+        #   hasNextPage
+        #   hasPreviousPage
+        # }
         edges {
           node {
             id
             title
+            onlineStoreUrl
+            handle
+            tags
             options {
               id
               name
               values
             }
             variants(first: 250) {
-              pageInfo {
-                hasNextPage
-                hasPreviousPage
-              }
+              # pageInfo {
+              #   hasNextPage
+              #   hasPreviousPage
+              # }
               edges {
                 node {
                   id
                   title
+                  sku
+                  availableForSale
                   selectedOptions {
                     name
                     value
@@ -36,6 +41,7 @@ const productList = gql`
                     src
                   }
                   price
+                  compareAtPrice
                 }
               }
             }
